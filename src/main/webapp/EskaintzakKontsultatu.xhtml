@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+ xmlns:h="jakarta.faces.html" 
+ xmlns:ui="jakarta.faces.facelets" 
+ xmlns:f="jakarta.faces.core"
+ xmlns:p="http://primefaces.org/ui"> 
+ <ui:composition> 
+ <f:view>
+ <h:head>
+ 	<title>Market</title>
+ </h:head>
+ <h:body>
+ <h:form>
+<table>
+<tr>
+<td><h:inputText id="item" value="#{EskaintzakKontsultatu.desc}"></h:inputText> </td>
+<td><h:commandButton id="bilatu" value="Bilatu" action="#{EskaintzakKontsultatu.eskaintzakLortu}"></h:commandButton></td>
+</tr>
+</table>
+<h:dataTable value="#{EskaintzakKontsultatu.eskaintzak}" var="e"
+             rendered="#{not empty EskaintzakKontsultatu.eskaintzak}">
+
+    <h:column>
+        <f:facet name="header">Tituloa</f:facet>
+        #{e.title}
+    </h:column>
+
+    <h:column>
+        <f:facet name="header">Prezioa</f:facet>
+        #{e.price}
+    </h:column>
+
+    <h:column>
+    <f:facet name="header">Publikatze data</f:facet>
+	<h:outputText value="#{e.publicationDate}">
+	    <f:convertDateTime pattern="dd-MM-yyyy"
+	                       timeZone="Europe/Madrid"/>
+	</h:outputText>
+    </h:column>
+
+</h:dataTable></h:form>
+
+ </h:body>
+ </f:view>
+ </ui:composition>
+ </html>
